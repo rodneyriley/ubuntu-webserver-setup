@@ -66,7 +66,7 @@ ssh-keygen -t rsa -N '' -f $username
 mkdir -p /home/$username/.ssh
 cp $username /home/$username/.ssh/$username
 cp $username.pub /home/$username/.ssh/$username.pub
-echo /home/$username/.ssh/$username.pub >> /home/$username/.ssh/authorized_keys
+cat /home/$username/.ssh/$username.pub >> /home/$username/.ssh/authorized_keys
 
 #------------------------------------------------------------------------------------
 # Get public IP of server
@@ -203,8 +203,8 @@ sed -i 's/#Header set X-Frame-Options:/Header set X-Frame-Options:/g'  /etc/apac
 apt-get -y install libapache2-modsecurity
 mv /etc/modsecurity/modsecurity.conf{-recommended,}
 sed -i 's/SecRuleEngine DetectionOnly/SecRuleEngine On/g'  /etc/modsecurity/modsecurity.conf
-sed -i '10 i Include /usr/share/modsecurity-crs/*.conf' /etc/apache2/mods-available/security2.conf 
-sed -i '11 i Include /usr/share/modsecurity-crs/activated_rules/*.conf' /etc/apache2/mods-available/security2.conf 
+#sed -i '10 i Include /usr/share/modsecurity-crs/*.conf' /etc/apache2/mods-available/security2.conf 
+#sed -i '11 i Include /usr/share/modsecurity-crs/activated_rules/*.conf' /etc/apache2/mods-available/security2.conf 
 
 service apache2 reload
 
