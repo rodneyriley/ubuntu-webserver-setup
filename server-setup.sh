@@ -66,7 +66,7 @@ ssh-keygen -t rsa -N '' -f $username
 mkdir -p /home/$username/.ssh
 cp $username /home/$username/.ssh/$username
 cp $username.pub /home/$username/.ssh/$username.pub
-echo /home/$username/.ssh/$username.pub >> ~/.ssh/authorized_keys
+echo /home/$username/.ssh/$username.pub >> /home/$username/.ssh/authorized_keys
 
 #------------------------------------------------------------------------------------
 # Get public IP of server
@@ -219,7 +219,9 @@ sed -i 's/bantime  = 600/bantime  = 3600/g'  /etc/fail2ban/jail.local
 sed -i 's/\[nginx-http-auth\]/\[nginx-http-auth\]\n\nenabled  = true/g'  /etc/fail2ban/jail.local
 sed -i 's/\[nginx-botsearch\]/\[nginx-botsearch\]\n\nenabled  = true/g'  /etc/fail2ban/jail.local
 service fail2ban restart
+
 #fail2ban-client status for testing
+#May be some issues with permissions, www area should be apache / www-data users .ssh should be for the user and permissions 600 
 
 
 
