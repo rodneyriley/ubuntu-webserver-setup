@@ -189,6 +189,14 @@ done
 service nginx reload
 
 #------------------------------------------------------------------------------------
+# Set Let's Encrypt to Check Certificate Renewal on a Daily Basis Using Cron Job
+#------------------------------------------------------------------------------------
+
+touch /etc/cron.daily/letsencrypt
+chmod 755 /etc/cron.daily/letsencrypt
+echo -e '#!/bin/sh \n \nletsencrypt renew' >> /etc/cron.daily/letsencrypt
+
+#------------------------------------------------------------------------------------
 # Harden Apache Configuration
 #------------------------------------------------------------------------------------
 
@@ -222,6 +230,8 @@ service fail2ban restart
 
 #fail2ban-client status for testing
 #May be some issues with permissions, www area should be apache / www-data users .ssh should be for the user and permissions 600 
+
+
 
 
 
