@@ -160,6 +160,7 @@ cd ..
 apt-get -y install imagemagick
 apt-get -y install php-imagick
 service apache2 reload
+service php7.0-fpm reload
 
 #------------------------------------------------------------------------------------
 # Installing and Configuring wkhtmltopdf
