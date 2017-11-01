@@ -91,11 +91,12 @@ sed -i 's/memory_limit = 128M/memory_limit = 1024M/g'  /etc/php/7.0/fpm/php.ini
 systemctl reload apache2
 
 #------------------------------------------------------------------------------------
-# Configure Apache to use mod_fastcgi
+# Configure Apache to use mod_fastcgi and rewrite module
 #------------------------------------------------------------------------------------
 
 #not sure if this should be mods-enabled or mods-available
 
+a2enmod rewrite
 a2enmod actions
 sed -i '5 i AddType application\/x-httpd-fastphp .php' /etc/apache2/mods-enabled/fastcgi.conf 
 sed -i '6 i Action application\/x-httpd-fastphp \/php-fcgi' /etc/apache2/mods-enabled/fastcgi.conf 
@@ -131,7 +132,7 @@ apt-get -y install nginx
 rm /etc/nginx/sites-enabled/default
 touch /etc/nginx/sites-available/apache
 
-echo -e "server {\n  listen 80;\n    server_name ${DOMAIN[@]} ${WWW_DOMAIN[@]};\nlocation / {\nproxy_pass http://$PUBLIC_IP:8080;\n proxy_set_header Host \$host;\n proxy_set_header X-Real-IP \$remote_addr;\n proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;\n proxy_set_header X-Forwarded-Proto \$scheme;} }" > /etc/nginx/sites-available/apache
+echo -e "server {\n  listen 80;\n    server_name ${DOMAIN[@]} ${WWW_DOMAIN[@]};\nlocation / {\nproxy_pass http://127.0.0.1:8080;\n proxy_set_header Host \$host;\n proxy_set_header X-Real-IP \$remote_addr;\n proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;\n proxy_set_header X-Forwarded-Proto \$scheme;} }" > /etc/nginx/sites-available/apache
 
 ln -s /etc/nginx/sites-available/apache /etc/nginx/sites-enabled/apache
 service nginx reload
