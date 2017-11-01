@@ -83,7 +83,7 @@ echo $PUBLIC_IP
 # Install Apache and PHP, set Apache to listen on port 8080
 #------------------------------------------------------------------------------------
 
-apt-get -y install apache2 libapache2-mod-fastcgi php-fpm php-mysql php-mcrypt php-mbstring php-gd
+apt-get -y install apache2 libapache2-mod-fastcgi php-fpm php-mysql php-mcrypt php-mbstring php-gd php-curl
 apt-get -y install 
 sed -i '/Listen/{s/\([0-9]\+\)/8080/; :a;n; ba}' /etc/apache2/ports.conf
 sed -i '/*:/{s/\([0-9]\+\)/8080/; :a;n; ba}' /etc/apache2/sites-available/000-default.conf
