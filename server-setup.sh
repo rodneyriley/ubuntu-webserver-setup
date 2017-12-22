@@ -117,7 +117,7 @@ for (( i=1; i<=COUNT; i++ ))
 do  
 mkdir /var/www/${DOMAIN[i]}
 mkdir /var/www/${DOMAIN[i]}/.well-known
-echo -e "<VirtualHost *:8080>\nServerName ${DOMAIN[i]}\nServerAlias www.${DOMAIN[i]}\nDocumentRoot /var/www/${DOMAIN[i]}\n<Directory /var/www/${DOMAIN[i]}>\nAllowOverride All\n</Directory>\n</VirtualHost>" > /etc/apache2/sites-available/${DOMAIN[i]}.conf
+echo -e "<VirtualHost *:8080>\nServerName ${DOMAIN[i]}\nServerAlias www.${DOMAIN[i]}\nDocumentRoot /var/www/${DOMAIN[i]}\n<Directory /var/www/${DOMAIN[i]}>\nAllowOverride None\nInclude /var/www/${DOMAIN[i]}/.htaccess\n</Directory>\n</VirtualHost>" > /etc/apache2/sites-available/${DOMAIN[i]}.conf
 a2ensite ${DOMAIN[i]}
 done
 chown -R www-data /var/www
