@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #------------------------------------------------------------------------------------
-# Update repos and server - y
+# Update repos and server 
 #------------------------------------------------------------------------------------
 
 add-apt-repository universe
@@ -12,7 +12,7 @@ apt-get -y upgrade
 apt -y autoremove
 
 #------------------------------------------------------------------------------------
-# Config firewall - y
+# Config firewall 
 #------------------------------------------------------------------------------------
 
 ufw default deny incoming
@@ -24,7 +24,7 @@ ufw allow 3306
 ufw --force enable
 
 #------------------------------------------------------------------------------------
-# Enable SWAP - y
+# Enable SWAP 
 #------------------------------------------------------------------------------------
 
 fallocate -l 1G /swapfile
@@ -35,13 +35,13 @@ cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 #------------------------------------------------------------------------------------
-# Install MC - y
+# Install MC 
 #------------------------------------------------------------------------------------
 
 apt -y install mc
 
 #------------------------------------------------------------------------------------
-# Gather domain names into array - y
+# Gather domain names into array 
 #------------------------------------------------------------------------------------
 
 echo -e "How many domains would you like to set up: \c "
@@ -84,7 +84,7 @@ PUBLIC_IP=`wget http://ipecho.net/plain -O - -q ; echo`
 echo $PUBLIC_IP
 
 #------------------------------------------------------------------------------------
-# Install Apache, PHP and imagemagick, set Apache to listen on port 8080 - y
+# Install Apache, PHP and imagemagick, set Apache to listen on port 8080 
 #------------------------------------------------------------------------------------
 
 apt-get -y install apache2 php7.3-fpm php7.3 php7.3-common php7.3-mysql php7.3-xml php7.3-xmlrpc php7.3-curl php7.3-gd php7.3-imagick php7.3-cli php7.3-dev php7.3-imap php7.3-mbstring php7.3-opcache php7.3-soap php7.3-zip php7.3-intl imagemagick
@@ -96,7 +96,7 @@ sed -i 's/memory_limit = 128M/memory_limit = 1024M/g'  /etc/php/7.3/fpm/php.ini
 systemctl reload apache2
 
 #------------------------------------------------------------------------------------
-# Configure Apache to use mod_fastcgi and rewrite module - y
+# Configure Apache to use mod_fastcgi and rewrite module 
 #------------------------------------------------------------------------------------
 
 a2enmod rewrite
