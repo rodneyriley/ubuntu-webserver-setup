@@ -186,7 +186,7 @@ dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
 #------------------------------------------------------------------------------------
 
 apt-get -y install letsencrypt
-echo -e "ssl_protocols TLSv1.2 TLSv1.3;\nssl_prefer_server_ciphers on;\nssl_dhparam /etc/ssl/certs/dhparam.pem; # openssl dhparam -out /etc/nginx/dhparam.pem 4096\nssl_ciphers EECDH+AESGCM:EDH+AESGCM;\nssl_ecdh_curve secp384r1; # Requires nginx >= 1.1.0\nssl_session_timeout  10m;\nssl_session_cache shared:SSL:10m;\nssl_session_tickets off; # Requires nginx >= 1.5.9\nssl_stapling on; # Requires nginx >= 1.3.7\nssl_stapling_verify on; # Requires nginx => 1.3.7\nresolver 8.8.8.8 8.8.4.4 valid=300s;\nresolver_timeout 5s;\nadd_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";\nadd_header X-Frame-Options DENY;\nadd_header X-Content-Type-Options nosniff;\nadd_header X-XSS-Protection "1; mode=block";\n" > /etc/nginx/snippets/ssl-params.conf
+echo -e 'ssl_protocols TLSv1.2 TLSv1.3;\nssl_prefer_server_ciphers on;\nssl_dhparam /etc/ssl/certs/dhparam.pem; # openssl dhparam -out /etc/nginx/dhparam.pem 4096\nssl_ciphers EECDH+AESGCM:EDH+AESGCM;\nssl_ecdh_curve secp384r1; # Requires nginx >= 1.1.0\nssl_session_timeout  10m;\nssl_session_cache shared:SSL:10m;\nssl_session_tickets off; # Requires nginx >= 1.5.9\nssl_stapling on; # Requires nginx >= 1.3.7\nssl_stapling_verify on; # Requires nginx => 1.3.7\nresolver 8.8.8.8 8.8.4.4 valid=300s;\nresolver_timeout 5s;\nadd_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";\nadd_header X-Frame-Options DENY;\nadd_header X-Content-Type-Options nosniff;\nadd_header X-XSS-Protection "1; mode=block";\n' > /etc/nginx/snippets/ssl-params.conf
 
 
 for (( i=1; i<=COUNT; i++ ))
